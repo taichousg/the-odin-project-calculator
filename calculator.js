@@ -1,8 +1,4 @@
-// Operation:
-// number, operator, another number, like 3 + 5
-// Another function, operate:
-// Take operator and the 2 numbers, and then calls one of the above functions
-
+// Variable Definition
 let operation="";
 let number1="";
 let number2="";
@@ -12,22 +8,34 @@ let display;
 // ADD Function
 function addNumbers(number1, number2){
     result = number1+number2;
-    console.log("adding numbers, " + result);
     return result;
 }
 
 // SUBSTRACT Function
 function substractNumbers(number1, number2){
     result = number1-number2;
-    console.log("substracting numbers, " + result);
     return result;
 }
 
 // MULTIPLY Function
 function multiplyNumbers(number1, number2){
     result = number1*number2;
-    console.log("multiplying numbers, " + result);
     return result;
+}
+
+// REMAINDER Function
+function remainderNumbers(number1, number2){
+    if (number2=="0"){
+        return "0";
+    } else {
+        has_decimals = hasDecimals(number1/number2);
+        if (has_decimals){
+            result = (number1%number2).toFixed(2);
+        } else {
+            result = (number1%number2);
+        }
+        return result;
+    }
 }
 
 // DIVIDE Function
@@ -35,11 +43,19 @@ function divideNumbers(number1, number2){
     if (number2=="0"){
         return "0";
     } else {
-        result = (number1/number2).toFixed(2);
-        console.log("dividing numbers, " + result);
+        has_decimals = hasDecimals(number1/number2);
+        if (has_decimals){
+            result = (number1/number2).toFixed(2);
+        } else {
+            result = (number1/number2);
+        }
         return result;
     }
 }
+
+function hasDecimals(dividend, divisor) {
+    return Number.isInteger(dividend / divisor);
+  }
 
 function setOperation(operator){
     display = document.getElementById('result');
@@ -63,9 +79,8 @@ function setOperation(operator){
             operation =  "multiply";
         }
         if (operator == "%"){
-            operation = "percentage";
+            operation = "remainder";
         }
-        console.log("operation = " + operation);
     }
 }
 
@@ -87,7 +102,9 @@ function operate(){
         if (operation == "divide"){
             result = divideNumbers(Number(number1),Number(number2));
         }
-        console.log("result = " + result);
+        if (operation == "remainder"){
+            result = remainderNumbers(Number(number1),Number(number2));
+        }
         display.innerHTML = result;
         return result;
     }
@@ -97,19 +114,15 @@ function setNumbers(number){
     display = document.getElementById('result');
     if (operation=="" && number1==""){
         number1 = number;
-        console.log("number1 = " + number1);
         display.innerHTML = number1;
     } else if (operation=="" && number1!=""){
         number1 = number1.concat(number);
-        console.log("number1 = " + number1);
         display.innerHTML = number1;
     } else if (operation!="" && number2==""){
         number2 = number;
-        console.log("number2 = " + number2);
         display.innerHTML = number2;
     } else if (operation!="" && number2!=""){
         number2 = number2.concat(number);
-        console.log("number2 = " + number2);
         display.innerHTML = number2;
     }
 }
@@ -123,11 +136,30 @@ function clearData(){
     display.innerHTML = '0';
 }
 
+function getBack(){
+    display = document.getElementById('result');
+    // Removing digit from number1
+    if (number1!="" && number2=="" && operation==""){
+        number1 = number1.substring(0,number1.length-1);
+        console.log("number1 = " + number1);
+        display.innerHTML = number1;
+        return number1;
+    }
+    // Removing digit from number2
+    if (number1!="" && number2!="" && operation!=""){
+        number2 = number2.substring(0,number2.length-1);
+        console.log("number2 = " + number2);
+        display.innerHTML = number2;
+        return number2;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     initializeCalculator();
 });
 
 function initializeCalculator(){
+    // Initial Value of Display
     let display = document.getElementById('result');
     display.innerHTML = '0';   
 }
