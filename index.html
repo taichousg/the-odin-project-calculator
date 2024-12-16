@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>TOP Calculator</title>
+</head>
+<body>
+    <div id="display">
+        <p id="result"></p>
+    </div>
+    <div id="container">
+        <div class="row">
+            <button class="button buttonP1" onclick="clearData()">Clr</button>
+            <button class="button buttonP2">Bck</button>
+            <button class="button buttonP3">%</button>
+            <button class="button buttonP4" onclick="setOperation('/')">/</button>    
+        </div>
+        <div class="row">
+            <button class="button buttonP5" onclick="setNumbers('7')">7</button>
+            <button class="button buttonP6" onclick="setNumbers('8')">8</button>
+            <button class="button buttonP7" onclick="setNumbers('9')">9</button>
+            <button class="button buttonP8" onclick="setOperation('*')">*</button>
+        </div>
+        <div class="row">
+            <button class="button buttonP9" onclick="setNumbers('4')">4</button>
+            <button class="button buttonP10" onclick="setNumbers('5')">5</button>
+            <button class="button buttonP11" onclick="setNumbers('6')">6</button>
+            <button class="button buttonP12" onclick="setOperation('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="button buttonP13" onclick="setNumbers('1')">1</button>
+            <button class="button buttonP14" onclick="setNumbers('2')">2</button>
+            <button class="button buttonP15" onclick="setNumbers('3')">3</button>
+            <button class="button buttonP16" onclick="setOperation('+')">+</button>
+        </div>
+        <div class="row">
+            <button class="button buttonP17" onclick="setNumbers('0')">0</button>
+            <button class="button buttonP18" onclick="setNumbers('.')">.</button>
+            <button class="button buttonP19" onclick="operate()">=</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="calculator.js"></script>
+</body>
+</html>
